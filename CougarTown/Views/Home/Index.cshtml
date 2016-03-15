@@ -1,12 +1,13 @@
-﻿
+﻿@using CougarTown.Models.BaseModels
+@model Home
 @{
     ViewBag.Title = "Index";
 }
 
 <div class="col-lg-12">
-    <h2>Welcome to CougarTown</h2>
+    <h2>@Model.PageTitle</h2>
     <p>
-
+        @Model.Text
     </p>
 </div>
 
