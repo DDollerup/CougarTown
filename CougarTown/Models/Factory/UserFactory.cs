@@ -24,7 +24,7 @@ namespace CougarTown.Models.Factory
 
             allEntities.Add(new User()
             {
-                ID = 1,
+                ID = 2,
                 DisplayName = "Hanne55",
                 Password = "youngAdults1990",
                 Name = "Hanne Fisker",
@@ -33,6 +33,11 @@ namespace CougarTown.Models.Factory
                 Gender = "Female",
                 Email = "hanne.fisker@live.dk"
             });
+        }
+
+        public User GetUser(int id)
+        {
+            return allEntities.Find(x => x.ID == id);
         }
     }
 }

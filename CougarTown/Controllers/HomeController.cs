@@ -25,5 +25,11 @@ namespace CougarTown.Controllers
             List<User> allUsers = userFac.GetAll();
             return View(allUsers);
         }
+
+        public ActionResult PublicProfile(int id)
+        {
+            User requestedUser = userFac.GetUser(id);
+            return View(requestedUser);
+        }
     }
 }
