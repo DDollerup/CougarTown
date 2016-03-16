@@ -97,6 +97,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\CougarManagement\Views\web.config" />
+    <Content Include="Areas\CougarManagement\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CougarManagement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CougarManagement\Views\Pimp\Index.cshtml" />
+    <Content Include="Areas\CougarManagement\Views\Pimp\AddUser.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -107,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\CougarManagement\Controllers\PimpController.cs" />
+    <Compile Include="Areas\CougarManagement\CougarManagementAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -138,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CougarManagement\Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
