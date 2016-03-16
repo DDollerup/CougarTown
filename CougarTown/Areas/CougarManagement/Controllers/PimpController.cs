@@ -36,7 +36,7 @@ namespace CougarTown.Areas.CougarManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddUserSubmit(User user, HttpPostedFileBase file)
+        public ActionResult AddUserSubmit(int id, User user, HttpPostedFileBase file)
         {
             // Is there a file, and is the file larger than 0 bytes
             if (file != null && file.ContentLength > 0)
@@ -48,6 +48,32 @@ namespace CougarTown.Areas.CougarManagement.Controllers
 
             userFac.Add(user);
 
+            if (id == 0)
+            {
+                return RedirectToAction("AllUsers");
+            }
+            else
+            {
+                return RedirectToAction("HotOrNot", "Home", new { area = "" });
+            }
+        }
+
+        public ActionResult UpdateUser(int id)
+        {
+            User userToUpdate = userFac.GetUser(id);
+            return View(userToUpdate);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserSubmit(User updatedUser)
+        {
+            userFac.Update(updatedUser.ID, updatedUser);
+            return RedirectToAction("AllUsers");
+        }
+
+        public ActionResult DeleteUser(int id)
+        {
+            userFac.Remove(id);
             return RedirectToAction("AllUsers");
         }
     }

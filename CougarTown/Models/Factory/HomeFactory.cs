@@ -18,7 +18,7 @@ namespace CougarTown.Models.Factory
         {
             allEntities.Add(new Home()
             {
-                HomeID = 1,
+                ID = 1,
                 Text = "At CougarTown, you can find all your Cougar needs.",
                 Image = "placeholder.jpg",
                 MetaDescription = "",
@@ -28,7 +28,7 @@ namespace CougarTown.Models.Factory
 
         public Home GetHome(int id)
         {
-            return allEntities.Find(x => x.HomeID == id);
+            return allEntities.Find(x => x.ID == id);
         }
     }
 }

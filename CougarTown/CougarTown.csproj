@@ -103,6 +103,7 @@
     <Content Include="Areas\CougarManagement\Views\Pimp\Index.cshtml" />
     <Content Include="Areas\CougarManagement\Views\Pimp\AddUser.cshtml" />
     <Content Include="Areas\CougarManagement\Views\Pimp\AllUsers.cshtml" />
+    <Content Include="Areas\CougarManagement\Views\Pimp\UpdateUser.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -137,6 +138,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\AddUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

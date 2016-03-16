@@ -38,5 +38,10 @@ namespace CougarTown.Controllers
             User requestedUser = userFac.GetUser(id);
             return View(requestedUser);
         }
+
+        public ActionResult AddUser()
+        {
+            return View();
+        }
     }
 }

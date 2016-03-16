@@ -38,19 +38,23 @@ namespace CougarTown.Models.Factory
 
         public void Add(T entity)
         {
+            entity.ID = allEntities.Count + 1;
             allEntities.Add(entity);
             this.context.Session[session] = allEntities;
         }
 
-        public void Remove(T entity)
+        public void Remove(int id)
         {
-            allEntities.Remove(entity);
+            T entityToRemove = allEntities.Find(x => x.ID == id);
+            allEntities.Remove(entityToRemove);
             this.context.Session[session] = allEntities;
         }
 
-        public void Update(T entity)
+        public void Update(int id, T updatedEntity)
         {
-            
+            Remove(id);
+            allEntities.Add(updatedEntity);
+            this.context.Session[session] = allEntities;
         }
     }
 }
