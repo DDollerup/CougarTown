@@ -11,13 +11,13 @@ namespace CougarTown.Models.Factory
         protected List<T> allEntities = new List<T>();
         abstract protected void SeedEntities();
 
+
+        private string session = typeof(T).ToString();
         private HttpContextBase context;
 
         public AutoFactory(HttpContextBase context)
         {
             this.context = context;
-
-            string session = typeof(T).ToString();
 
             // if there's an existing session, use that one
             if (this.context.Session[session] != null)
@@ -34,6 +34,23 @@ namespace CougarTown.Models.Factory
         public List<T> GetAll()
         {
             return allEntities;
+        }
+
+        public void Add(T entity)
+        {
+            allEntities.Add(entity);
+            this.context.Session[session] = allEntities;
+        }
+
+        public void Remove(T entity)
+        {
+            allEntities.Remove(entity);
+            this.context.Session[session] = allEntities;
+        }
+
+        public void Update(T entity)
+        {
+            
         }
     }
 }

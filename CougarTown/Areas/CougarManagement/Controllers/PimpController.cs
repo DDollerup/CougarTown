@@ -31,7 +31,8 @@ namespace CougarTown.Areas.CougarManagement.Controllers
 
         public ActionResult AllUsers()
         {
-            return View();
+            List<User> allUsers = userFac.GetAll();
+            return View(allUsers);
         }
 
         [HttpPost]
@@ -45,6 +46,7 @@ namespace CougarTown.Areas.CougarManagement.Controllers
                 file.SaveAs(appPath + @"/Content/Images/Users/" + file.FileName);
             }
 
+            userFac.Add(user);
 
             return RedirectToAction("AllUsers");
         }

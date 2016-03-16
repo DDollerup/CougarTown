@@ -102,6 +102,7 @@
     <Content Include="Areas\CougarManagement\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CougarManagement\Views\Pimp\Index.cshtml" />
     <Content Include="Areas\CougarManagement\Views\Pimp\AddUser.cshtml" />
+    <Content Include="Areas\CougarManagement\Views\Pimp\AllUsers.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
