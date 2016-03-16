@@ -8,6 +8,12 @@ namespace CougarTown.Models.Factory
 {
     public class UserFactory : AutoFactory<User>
     {
+        public UserFactory(HttpContextBase context) : base(context)
+        {
+
+        }
+
+
         protected override void SeedEntities()
         {
             allEntities.Add(new User()

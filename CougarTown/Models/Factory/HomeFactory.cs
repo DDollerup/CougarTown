@@ -8,6 +8,12 @@ namespace CougarTown.Models.Factory
 {
     public class HomeFactory : AutoFactory<Home>
     {
+        public HomeFactory(HttpContextBase context) : base(context)
+        {
+
+        }
+
+
         protected override void SeedEntities()
         {
             allEntities.Add(new Home()

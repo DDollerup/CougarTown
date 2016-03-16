@@ -10,8 +10,15 @@ namespace CougarTown.Controllers
 {
     public class HomeController : Controller
     {
-        HomeFactory homeFac = new HomeFactory();
-        UserFactory userFac = new UserFactory();
+        HomeFactory homeFac;
+        UserFactory userFac;
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            homeFac = new HomeFactory(this.HttpContext);
+            userFac = new UserFactory(this.HttpContext);
+            base.OnActionExecuting(filterContext);
+        }
 
         // GET: Home
         public ActionResult Index()
