@@ -13,7 +13,6 @@ namespace CougarTown.Models.Factory
 
         }
 
-
         protected override void SeedEntities()
         {
             allEntities.Add(new Home()

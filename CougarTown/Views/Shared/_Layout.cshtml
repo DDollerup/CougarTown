@@ -7,6 +7,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -34,7 +35,7 @@
                 {
                     CougarTown.Models.BaseModels.User user = Session["UserLoggedIn"] as CougarTown.Models.BaseModels.User;
                     <span>Welcome @user.DisplayName</span>
-                    <a href="#">Logout</a>
+                    <a href="/Home/Logout">Logout</a>
                 }
                 else
                 {

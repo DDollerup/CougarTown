@@ -12,11 +12,13 @@ namespace CougarTown.Controllers
     {
         HomeFactory homeFac;
         UserFactory userFac;
+        UserLikesFactory userLikesFac;
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             homeFac = new HomeFactory(this.HttpContext);
             userFac = new UserFactory(this.HttpContext);
+            userLikesFac = new UserLikesFactory(this.HttpContext);
             base.OnActionExecuting(filterContext);
         }
 
@@ -64,11 +66,28 @@ namespace CougarTown.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Logout()
+        {
+            Session["UserLoggedIn"] = null;
+            return RedirectToAction("Index");
+        }
+
         public ActionResult MyProfile()
         {
             User userLoggedIn = Session["UserLoggedIn"] as User;
             if (userLoggedIn != null)
             {
+                List<UserLikes> usersLiked = userLikesFac.GetAll().Where(x => x.UserID == userLoggedIn.ID).ToList();
+
+                List<User> actualListOfUsers = new List<User>();
+
+                foreach (UserLikes uLikes in usersLiked)
+                {
+                    actualListOfUsers.Add(userFac.Get(uLikes.OtherUserID));
+                }
+
+                ViewBag.ProfilesUserLiked = actualListOfUsers;
+
                 return View(userLoggedIn);
             }
             return RedirectToAction("Login");
@@ -83,9 +102,40 @@ namespace CougarTown.Controllers
         [HttpPost]
         public ActionResult UpdateUserSubmit(User updatedUser)
         {
+            User oldUser = userFac.GetUser(updatedUser.ID);
+            string profileImage = oldUser.ProfileImage;
+
+            updatedUser.ProfileImage = profileImage;
+
             userFac.Update(updatedUser.ID, updatedUser);
+
             Session["UserLoggedIn"] = userFac.GetUser(updatedUser.ID);
             return RedirectToAction("MyProfile");
+        }
+
+        public ActionResult LikeUser()
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            bool like = bool.Parse(Request.QueryString["like"]);
+            string returnURL = (string)Request.QueryString["returnURL"];
+
+            User userLoggedIn = Session["UserLoggedIn"] as User;
+
+            if (userLoggedIn != null)
+            {
+                UserLikes userLikes = new UserLikes();
+                userLikes.UserID = userLoggedIn.ID;
+                userLikes.OtherUserID = id;
+                userLikes.UserLike = like;
+
+                userLikesFac.Add(userLikes);
+
+
+
+                return RedirectToAction(returnURL.Replace("/Home", ""));
+            }
+
+            return RedirectToAction("Login");
         }
     }
 }

@@ -123,9 +123,11 @@
     <Compile Include="Models\BaseModels\BaseModel.cs" />
     <Compile Include="Models\BaseModels\Home.cs" />
     <Compile Include="Models\BaseModels\User.cs" />
+    <Compile Include="Models\BaseModels\UserLikes.cs" />
     <Compile Include="Models\Factory\AutoFactory.cs" />
     <Compile Include="Models\Factory\HomeFactory.cs" />
     <Compile Include="Models\Factory\UserFactory.cs" />
+    <Compile Include="Models\Factory\UserLikesFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

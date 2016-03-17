@@ -31,6 +31,11 @@ namespace CougarTown.Models.Factory
             }
         }
 
+        public T Get(int id)
+        {
+            return allEntities.Find(x => x.ID == id);
+        }
+
         public List<T> GetAll()
         {
             return allEntities;

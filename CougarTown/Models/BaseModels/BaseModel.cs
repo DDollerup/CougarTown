@@ -12,8 +12,5 @@ namespace CougarTown.Models.BaseModels
         // Page Requirements
         public string PageTitle { get; set; }
         public string MetaDescription { get; set; }
-
-        // User Requirements
-        public int UserID { get; set; }
     }
 }

@@ -64,3 +64,29 @@
         </div>
     </div>
 </div>
+<div style="clear:both;">
+
+</div>
+
+<h3>Profiles I like <3 </h3>
+<hr />
+
+<div class="col-lg-12">
+    <div class="row">
+        @foreach (User usersLiked in (ViewBag.ProfilesUserLiked as List<User>))
+        {
+            <a href="/Home/PublicProfile/@usersLiked.ID">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <img src="~/Content/Images/Users/@usersLiked.ProfileImage" class="img-responsive" style="height:100px" />
+                        </td>
+                        <td>
+                            @usersLiked.DisplayName
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        }
+    </div>
+</div>
