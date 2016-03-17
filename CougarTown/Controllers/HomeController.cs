@@ -63,5 +63,29 @@ namespace CougarTown.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult MyProfile()
+        {
+            User userLoggedIn = Session["UserLoggedIn"] as User;
+            if (userLoggedIn != null)
+            {
+                return View(userLoggedIn);
+            }
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult EditUser()
+        {
+            User userToEdit = Session["UserLoggedIn"] as User;
+            return View(userToEdit);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserSubmit(User updatedUser)
+        {
+            userFac.Update(updatedUser.ID, updatedUser);
+            Session["UserLoggedIn"] = userFac.GetUser(updatedUser.ID);
+            return RedirectToAction("MyProfile");
+        }
     }
 }

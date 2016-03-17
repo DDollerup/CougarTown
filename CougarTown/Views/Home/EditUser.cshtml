@@ -1,0 +1,89 @@
+﻿@using CougarTown.Models.BaseModels
+@model User
+@{
+    ViewBag.Title = "EditUser";
+}
+
+<h2>EditUser</h2>
+
+<div class="col-lg-12">
+    <div class="row">
+        <h2>@Model.DisplayName</h2>
+        <div class="col-lg-6">
+            <img src="~/Content/Images/Users/@Model.ProfileImage" class="img-rounded" />
+        </div>
+        <div class="col-lg-6">
+            <form action="/Home/UpdateUserSubmit" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="@Model.ID" name="ID" />
+                <table class="table">
+                    <tr>
+                        <td>
+                            Display Name:
+                        </td>
+                        <td>
+                            <input type="text" value="@Model.DisplayName" name="DisplayName" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            <input type="text" value="@Model.Name" name="Name" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Age:
+                        </td>
+                        <td>
+                            <input type="number" value="@Model.Age" name="Age" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender:
+                        </td>
+                        <td>
+                            <select name="Gender" class="form-control">
+                                @switch (Model.Gender)
+                                {
+                                    case "Undefined":
+                                        <option value="Undefined" selected="selected">Undefined</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        break;
+                                    case "Male":
+                                        <option value="Undefined">Undefined</option>
+                                        <option value="Male" selected="selected">Male</option>
+                                        <option value="Female">Female</option>
+                                        break;
+                                    case "Female":
+                                        <option value="Undefined">Undefined</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female" selected="selected">Female</option>
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            <input type="email" value="@Model.Email" name="Email" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Save" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
