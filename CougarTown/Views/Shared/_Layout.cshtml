@@ -26,6 +26,19 @@
                     </li>
                 </ul>
             </div>
+            <div id="userLogin">
+                @if (Session["UserLoggedIn"] != null)
+                {
+                    CougarTown.Models.BaseModels.User user = Session["UserLoggedIn"] as CougarTown.Models.BaseModels.User;
+                    <span>Welcome @user.DisplayName</span>
+                    <a href="#">Logout</a>
+                }
+                else
+                {
+                    <span>Not logged in</span>
+                    <a href="/Home/Login">Login</a>
+                }
+            </div>
         </div>
     </div>
 

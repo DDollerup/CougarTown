@@ -11,6 +11,7 @@
 <div class="col-lg-12">
     <div class="row">
         <form action="/CougarManagement/Pimp/UpdateUserSubmit" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="ID" value="@Model.ID" />
             <table class="table">
                 <tr>
                     <td>
@@ -42,9 +43,26 @@
                     </td>
                     <td>
                         <select name="Gender" class="form-control">
-                            <option value="Undefined">Undefined</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            @switch (Model.Gender)
+                            {
+                                case "Undefined":
+                                    <option value="Undefined" selected="selected">Undefined</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    break;
+                                case "Male":
+                                    <option value="Undefined">Undefined</option>
+                                    <option value="Male" selected="selected">Male</option>
+                                    <option value="Female">Female</option>
+                                    break;
+                                case "Female":
+                                    <option value="Undefined">Undefined</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female" selected="selected">Female</option>
+                                    break;
+                                default:
+                                    break;
+                            }
                         </select>
                     </td>
                 </tr>

@@ -45,5 +45,16 @@ namespace CougarTown.Models.Factory
         {
             return allEntities.Find(x => x.ID == id);
         }
+
+        public User UserLogin(string displayName, string password)
+        {
+            // If we find a user, with the specifications we've made we can return the user
+            User user = allEntities.Find(x => x.DisplayName == displayName && x.Password == password);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
     }
 }

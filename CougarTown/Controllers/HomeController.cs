@@ -43,5 +43,25 @@ namespace CougarTown.Controllers
         {
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoginSubmit(string displayName, string password)
+        {
+            User userToLogin = userFac.UserLogin(displayName, password);
+            if (userToLogin == null)
+            {
+                TempData["MSG"] = "Wrong password or display name!";
+                return RedirectToAction("Login");
+            }
+
+            Session["UserLoggedIn"] = userToLogin;
+
+            return RedirectToAction("Index");
+        }
     }
 }
