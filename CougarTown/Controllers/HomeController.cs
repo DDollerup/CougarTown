@@ -98,16 +98,24 @@ namespace CougarTown.Controllers
             User userLoggedIn = Session["UserLoggedIn"] as User;
             if (userLoggedIn != null)
             {
-                List<UserLikes> usersLiked = userLikesFac.GetAll().Where(x => x.UserID == userLoggedIn.ID).ToList();
+                List<UserLikes> userFilter = userLikesFac.GetAll()
+                    .Where(x => x.UserID == userLoggedIn.ID).ToList();
 
-                List<User> actualListOfUsers = new List<User>();
+                List<User> filteredListOfUsers = new List<User>();
 
-                foreach (UserLikes uLikes in usersLiked)
+                if (userFilter.Count > 0)
                 {
-                    actualListOfUsers.Add(userFac.Get(uLikes.OtherUserID));
+                    foreach (User user in userFac.GetAll())
+                    {
+                        UserLikes ul = userFilter.Find(x => x.OtherUserID == user.ID);
+                        if (ul != null && ul.UserLike)
+                        {
+                            filteredListOfUsers.Add(user);
+                        }
+                    }
                 }
 
-                ViewBag.ProfilesUserLiked = actualListOfUsers;
+                ViewBag.ProfilesUserLiked = filteredListOfUsers;
 
                 return View(userLoggedIn);
             }
@@ -144,12 +152,20 @@ namespace CougarTown.Controllers
 
             if (userLoggedIn != null)
             {
-                UserLikes userLikes = new UserLikes();
-                userLikes.UserID = userLoggedIn.ID;
-                userLikes.OtherUserID = id;
-                userLikes.UserLike = like;
-
-                userLikesFac.Add(userLikes);
+                if (userLikesFac.GetAll().Find(x=> x.OtherUserID == id) == null)
+                {
+                    UserLikes userLikes = new UserLikes();
+                    userLikes.UserID = userLoggedIn.ID;
+                    userLikes.OtherUserID = id;
+                    userLikes.UserLike = like;
+                    userLikesFac.Add(userLikes);
+                }
+                else
+                {
+                    UserLikes userLikes = userLikesFac.GetAll().Find(x => x.OtherUserID == id);
+                    userLikes.UserLike = like;
+                    userLikesFac.Update(id, userLikes);
+                }
 
 
 
