@@ -67,7 +67,7 @@
 <div style="clear:both;">
 
 </div>
-    
+
 <h3>Profiles I like <3 </h3>
 <hr />
 
@@ -83,6 +83,29 @@
                         </td>
                         <td>
                             @usersLiked.DisplayName
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        }
+    </div>
+</div>
+
+<h3>Profiles I don't like @("</3") </h3>
+<hr />
+
+<div class="col-lg-12">
+    <div class="row">
+        @foreach (User usersDisliked in (ViewBag.ProfilesUserDisliked as List<User>))
+        {
+            <a href="/Home/PublicProfile/@usersDisliked.ID">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <img src="~/Content/Images/Users/@usersDisliked.ProfileImage" class="img-responsive" style="height:100px" />
+                        </td>
+                        <td>
+                            @usersDisliked.DisplayName
                         </td>
                     </tr>
                 </table>

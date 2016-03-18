@@ -102,6 +102,7 @@ namespace CougarTown.Controllers
                     .Where(x => x.UserID == userLoggedIn.ID).ToList();
 
                 List<User> filteredListOfUsers = new List<User>();
+                List<User> filteredListOfUsersNoLiky = new List<User>();
 
                 if (userFilter.Count > 0)
                 {
@@ -112,10 +113,15 @@ namespace CougarTown.Controllers
                         {
                             filteredListOfUsers.Add(user);
                         }
+                        else if (ul != null && ul.UserLike == false)
+                        {
+                            filteredListOfUsersNoLiky.Add(user);
+                        }
                     }
                 }
 
                 ViewBag.ProfilesUserLiked = filteredListOfUsers;
+                ViewBag.ProfilesUserDisliked = filteredListOfUsersNoLiky;
 
                 return View(userLoggedIn);
             }
