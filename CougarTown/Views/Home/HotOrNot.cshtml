@@ -1,15 +1,25 @@
 ﻿@using CougarTown.Models.BaseModels
 @model List<User>
 
-
 @{
     ViewBag.Title = "HotOrNot";
+
+    User userLoggedIn = null;
+
+    if (Session["UserLoggedIn"] != null)
+    {
+        userLoggedIn = Session["UserLoggedIn"] as User;
+    }
 }
 
 <div class="col-lg-12">
     <div class="row">
         @foreach (User user in Model)
         {
+            if (userLoggedIn != null && userLoggedIn.ID == user.ID)
+            {
+                continue;
+            }
             <a href="/Home/PublicProfile/@user.ID">
                 <div class="col-lg-4 img-thumbnail">
                     <div>

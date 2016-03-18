@@ -31,7 +31,28 @@ namespace CougarTown.Controllers
 
         public ActionResult HotOrNot()
         {
+            User userLoggedIn = Session["UserLoggedIn"] as User;
             List<User> allUsers = userFac.GetAll();
+            if (userLoggedIn != null)
+            {
+                List<UserLikes> userFilter = userLikesFac.GetAll()
+                    .Where(x => x.UserID == userLoggedIn.ID).ToList();
+
+                List<User> filteredListOfUsers = new List<User>();
+
+                foreach (User user in userFac.GetAll())
+                {
+                    UserLikes ul = userFilter.Find(x => x.OtherUserID == user.ID);
+                    if (ul == null || ul.UserLike)
+                    {
+                        filteredListOfUsers.Add(user);
+                    }
+                }
+
+                return View(filteredListOfUsers);
+            }
+
+
             return View(allUsers);
         }
 
